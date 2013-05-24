@@ -12,7 +12,7 @@ class LinksController < ApplicationController
 		@link = Link.new(params[:link])
 		if @link.save
 			flash[:success] = "Story submitted"
-			redirect_to @link
+			redirect_to root_path
 		else
 			render 'show'
 		end

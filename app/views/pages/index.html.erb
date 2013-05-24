@@ -4,7 +4,7 @@
 
 <ul>
 	<% @links.each do |link| %>
-		<li> <%= link_to link.title, link.url %> - <%= link_to "comments", link %> </li>
+		<li> <%= link_to link.title, link.url %> - <%= link_to pluralize(link.comments.count, "comment"), link %> </li>
 
 	<% end %>
 		<%= will_paginate @links %>

@@ -12,13 +12,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-	@comment = current_user.comments.new(params[:comment])
+  	@comment = current_user.comments.new(params[:comment])
 
-	if @comment.save
-		flash[:success] = "Comment submitted"
-		redirect_to action: 'show', id: params[:comment][:link_id], controller: "links"
-	else
-		redirect_to 'show'
-	end
+  	if @comment.save
+  		flash[:success] = "Comment submitted"
+  		redirect_to action: 'show', id: params[:comment][:link_id], controller: "links"
+  	else
+  		redirect_to 'show'
+  	end
   end
 end

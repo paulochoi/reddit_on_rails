@@ -33,6 +33,6 @@
 
 	<div>
 	  <% @link.comments.each do |comment| %>
-	    <p><%= comment.message %></p>
+	    <p><%= comment.message %> - Posted by <%= comment.user.email %> </p>
 	  <% end %>
 	</div>

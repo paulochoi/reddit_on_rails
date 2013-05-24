@@ -4,10 +4,14 @@
 
 <ul>
 	<% @links.each do |link| %>
-		<li> <%= link_to link.title, link.url %> - <%= link_to pluralize(link.comments.count, "comment"), link %> </li>
-
+		<li> 
+			<%= link_to '+', votes_path(vote: {link_id: link.id , up: true}), method: :post %>
+			<%= link.votes.where(up: true).count - link.votes.where(up:false).count %>
+			<%= link_to '-', votes_path(vote: {link_id: link.id , up: false}), method: :post %>
+			<%= link_to link.title, link.url %> - <%= link_to pluralize(link.comments.count, "comment"), link %> 
+		</li>
 	<% end %>
-		<%= will_paginate @links %>
 
+	<%= will_paginate @links %>
 </ul>
 	

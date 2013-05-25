@@ -1,26 +1,27 @@
 
 <ul class="unstyled">
-	<% @links.each do |link| %>
-		<div class="well well-small">
-		<li> 
-			<% if current_user && current_user.votes.where(link_id: link.id , up: true).present? %>
-				<i class= 'icon-star-empty'> </i>
-			<% else %>
-				<%= link_to ' ', votes_path(vote: {link_id: link.id , up: true}), method: :post, class: 'icon-arrow-up'%>
-			<% end %>
+	<% unless @links.empty? %>
+		<% @links.each do |link| %>
+			<div class="well well-small">
+			<li> 
+				<% if current_user && current_user.votes.where(link_id: link.id , up: true).present? %>
+					<i class= 'icon-star-empty'> </i>
+				<% else %>
+					<%= link_to ' ', votes_path(vote: {link_id: link.id , up: true}), method: :post, class: 'icon-arrow-up'%>
+				<% end %>
 
-			<%= link.votes.where(up: true).count - link.votes.where(up:false).count %>
+				<%= link.votes.where(up: true).count - link.votes.where(up:false).count %>
 
-			<% if current_user && current_user.votes.where(link_id: link.id, up: false).present? %>
-				<i class= 'icon-star-empty'> </i>
-			<% else %>
-				<%= link_to ' ', votes_path(vote: {link_id: link.id , up: false}), method: :post, class: 'icon-arrow-down' %>
-			<% end %>
-			<%= link_to link.title, link.url %> - <%= link_to pluralize(link.comments.count, "comment"), link %> 
-		</li>
-		</div>
+				<% if current_user && current_user.votes.where(link_id: link.id, up: false).present? %>
+					<i class= 'icon-star-empty'> </i>
+				<% else %>
+					<%= link_to ' ', votes_path(vote: {link_id: link.id , up: false}), method: :post, class: 'icon-arrow-down' %>
+				<% end %>
+				<%= link_to link.title, link.url %> - <%= link_to pluralize(link.comments.count, "comment"), link %> 
+			</li>
+			</div>
+		<% end %>
 	<% end %>
-
 	</br>
 
 	<%= will_paginate @links %> 

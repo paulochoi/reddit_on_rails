@@ -7,11 +7,10 @@ gem 'rails', '3.2.12'
 
 
 group :development do
-	gem 'sqlite3'
 	gem 'better_errors'
 end
 
-
+gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -30,7 +29,6 @@ gem 'devise'
 gem 'will_paginate'
 
 group :production do
-	gem 'pg'
 end
 
 # To use ActiveModel has_secure_password

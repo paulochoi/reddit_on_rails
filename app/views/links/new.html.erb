@@ -1,1 +1,28 @@
-<%= render "form" %>
+ <%= form_for @link , html: { class: 'form-horizontal pull-left' } do |f| %>
+ <% if @link.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+		<ul>
+		<% @link.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
+	</div>
+ <% end %>
+
+<div class="control-group">
+	<%= f.label :title , class: 'control-label' %>
+	<div class = "controls"> <%= f.text_field :title , placeholder: 'Title' %> </div>
+</div>
+
+<div class="control-group">
+	<%= f.label :url , class: 'control-label' %>
+	<div class = "controls"> <%= f.text_field :url , placeholder: 'URL'%> </div>
+</div>
+
+<div class="control-group">
+	<div class="controls">
+		<%= f.submit 'submit' , class: 'btn'%>
+	</div>
+</div>
+<% end %>

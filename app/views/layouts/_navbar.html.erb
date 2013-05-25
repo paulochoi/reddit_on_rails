@@ -1,0 +1,17 @@
+ <div class="navbar navbar-fixed-top navbar-inverse">
+  	<div class="navbar-inner">
+    	<div class="container">
+    		<a href="/" class="brand">Pauditt</a>
+      		<div class='nav-collapse'>
+        		<ul class='nav'>
+	  				<% if current_user.present? %>
+	  					<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+	  				<% else %>
+	  					<li><%= link_to 'Sign in', user_session_path %></li>
+	  					<li><%= link_to 'Register Now', new_user_registration_path %></li>
+	  				<% end %>
+  				</ul>
+			</div>
+ 		</div>
+	</div>
+</div>

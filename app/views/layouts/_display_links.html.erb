@@ -1,0 +1,9 @@
+<div class="page-header"><h3>Pauditt - Your front page for the interwebs</h3></div>
+<% [:notice, :error, :alert, :success].each do |level| %>
+  <% unless flash[level].blank? %>
+    <div data-alert="alert" class="alert alert-<%= level %> fade in">
+    <a class="close" data-dismiss="alert" href="#">&times;</a>
+    <%= content_tag :p, flash[level] %>
+    </div>
+  <% end %>
+<% end %>

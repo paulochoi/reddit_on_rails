@@ -1,15 +1,3 @@
-
-<!-- SIDEBAR CODE -->
-<% content_for :sidebar do %>
-  <h3>Left Menu</h3>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis molestie ante vitae ullamcorper. Maecenas pretium facilisis erat, ut ultricies augue dictum ac. Fusce aliquet imperdiet odio, in elementum diam molestie eget. Aenean iaculis, eros id scelerisque tempor, odio urna scelerisque tellus, in tempor ante ante rutrum justo. Sed in libero elit. Curabitur aliquam dui nec mauris fringilla non gravida metus pellentesque. Proin placerat sollicitudin faucibus. Donec rutrum elit sed lacus sagittis aliquam.
-  </br> </br>
-  <div id="centralize"> <%= link_to "Add a new link", new_link_path, class: 'btn btn-primary btn-align-center' %> </div>
-<% end %>
-<!-- SIDEBAR CODE ENDS HERE -->
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,51 +5,22 @@
   <title>Pauddit</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-	 <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <a href="/" class="brand">Pauditt</a>
-          <div class='nav-collapse'>
-            <ul class='nav'>
-				<% if current_user.present? %>
-					<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to 'Sign in', user_session_path %></li>
-					<li><%= link_to 'Register Now', new_user_registration_path %></li>
-				<% end %>
-			</ul>
-          </div>
-         </div>
-      </div>
-    </div>
+  <%= render 'layouts/navbar' %>
 
   <div class="container">
     <div class="row">
       <div class="span3" id="left-sidebar">
-        <%= yield :sidebar %>
+        <%= render 'layouts/sidebar' %>
       </div>
       <div class="span9">
-        <div class="page-header"><h3>Pauditt - Your front page for the interwebs</h3></div>
-        <% [:notice, :error, :alert, :success].each do |level| %>
-          <% unless flash[level].blank? %>
-            <div data-alert="alert" class="alert alert-<%= level %> fade in">
-            <a class="close" data-dismiss="alert" href="#">&times;</a>
-            <%= content_tag :p, flash[level] %>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render 'layouts/display_links' %>
         <%= yield %>
       </div>
     </div>
   </div>
-
-  <%= javascript_include_tag "application" %>
-
-
-
-
 </body>
 </html>
